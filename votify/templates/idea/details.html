@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %} - {{ idea.title }}{% endblock %}
+
+{% block extra_head %}
+    {% if idea.image.name %}
+        <meta property="og:image" content="{{ SITE_URL }}{{ idea.image.url }}"/>
+    {% endif %}
+    <meta property="og:title" content="{{ idea.title }}"/>
+    <meta property="og:description" content="{{ idea.description }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span8">
+            {% include 'idea/partials/_details.html' %}
+        </div>
+        {% url pages_sidebar_list as url %}
+        {% include 'pages/partials/sidebar_pages.html' with url=url %}
+    </div>
+{% endblock %}

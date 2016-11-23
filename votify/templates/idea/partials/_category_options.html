@@ -1,0 +1,6 @@
+{% for value, name in categories %}
+    {% if forloop.first %}
+        <option value="all">_ _ _ _</option>
+    {% endif %}
+    <option value="{{ value }}">{{ name }}</option>
+{% endfor %}

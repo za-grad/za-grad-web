@@ -1,0 +1,18 @@
+{% extends 'partials/list_item.html' %}
+
+{% block image %}
+    {% if image %}
+        <img src="{{ image }}" />
+    {% endif %}
+{% endblock %}
+{% block username %}
+    {{ who|upper }}, {{ when }}
+{% endblock %}
+{% block title %}
+    {{ title|upper }}
+    <div style="font-size: 0.7em; text-align: right;">{{ district }}{% if category %}, {{ category }}{% endif %}</div>
+{% endblock %}
+{% block text %}
+    {{ text|safe|truncatewords_html:50 }}
+    <div class="points">BODOVI: {{ points }}</div>
+{% endblock %}

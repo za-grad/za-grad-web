@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %} - Daj prijedlog{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="list-item create-idea-item">
+                <div class="img-box">
+                    {% block image %}
+                        <img src="{{ STATIC_URL }}bootstrap/img/bg/za_kakav_si_ti_grad.jpg" />
+                    {% endblock %}
+                </div>
+                <div class="triangle">
+                </div>
+                <div class="content">
+                    <form method="post" class="create-idea-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'snippets/form-field.html' with field=form.district label=form.district.label %}
+                        {% include 'snippets/form-field.html' with field=form.category label=form.category.label %}
+                        {% include 'snippets/form-field.html' with field=form.title label=form.title.label %}
+                        {% include 'snippets/form-field.html' with field=form.description label=form.description.label %}
+                        {% include 'snippets/form-field.html' with field=form.image %}
+                        <div class="input-append idea-image-input-append">
+                            <a class="btn btn-select-image" onclick="$('input[id=id_image]').click();">
+                                dodaj sliku
+                                <span class="image-selected hide">&#10004;</span></a>
+                            <input type="text" id="image_cover">
+                        </div>
+                        <div style="margin-top: 20px;">Slanjem ovog prijedloga prihvaćaš <a target="_blank" href="{% url page_view 'uvjeti' %}">uvjete korištenja</a>.</div>
+                        <div style="margin-top: 20px;">
+                            {% include 'snippets/btn.html' with label="pošalji" %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="span8 create-idea-right-area">
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            $('input[id=id_image]').change(function(){
+                var val = $(this).val();
+                $('#image_cover').val(val);
+                if (val != '') {
+                    $('.idea-image-input-append .image-selected').show();
+                } else {
+                    $('.idea-image-input-append .image-selected').hide();
+                }
+            });
+            $('#id_description').autosize();
+        });
+        $.get('{% url page_view_as_partial page_name="kako-koristiti" %}',
+            function(data){
+                $('.create-idea-right-area').html(data);
+            });
+    </script>
+{% endblock %}

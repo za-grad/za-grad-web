@@ -1,0 +1,57 @@
+{% extends 'members/base.html' %}
+{% load thumbnail %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="span4">
+        <div class="list-item create-idea-item">
+            <div class="img-box">
+                {% block image %}
+                    <div>
+                        UREĐIVANJE PROFILA
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="triangle"></div>
+            <div class="content">
+                <form method="post" class="list-item" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'snippets/form-field.html' with field=form.full_name label=form.full_name.label %}
+                    {% include 'snippets/form-field.html' with field=form.photo %}
+                    <div class="input-append idea-image-input-append">
+                        <a class="btn btn-select-image" onclick="$('input[id=id_photo]').click();">
+                            {% if user.get_profile.photo %}Promjeni{% else %}Dodaj{% endif %} sliku
+                            <span class="image-selected hide">&#10004;</span></a>
+                        <input type="text" id="image_cover">
+                    </div>
+                    <div>
+                        {% thumbnail user.get_profile.photo "200x200" crop="center" as im %}
+                            <img style="margin-top: 15px;" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        {% include 'snippets/form-field.html' with field=form.receive_notifications|bootstrap %}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        {% include 'snippets/btn.html' with label="spremi promjene" %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            $('input[id=id_photo]').change(function(){
+                var val = $(this).val();
+                $('#image_cover').val(val);
+                if (val != '') {
+                    $('.idea-image-input-append .image-selected').show();
+                } else {
+                    $('.idea-image-input-append .image-selected').hide();
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

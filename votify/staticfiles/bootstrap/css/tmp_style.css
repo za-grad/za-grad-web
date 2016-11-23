@@ -1,0 +1,349 @@
+html {
+    overflow-y: scroll;
+}
+body {
+    /*background-color: #602d91;*/
+    background-image: url(/static/img/ljudi.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+    /*background: white;*/
+    font-family: 'droid_sans_monoregular';
+    font-size: 1em;
+}
+form {
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+input[type="text"], input[type="password"], textarea {
+    border-radius: 0 !important;
+    color: #602D91 !important;
+    border: 0 !important;
+}
+a {
+   	color: #602d91;
+}
+.btn-votify {
+    padding: 10px;
+    font-family: 'ziontrain_pro_stencildemibold';
+    padding: 1em;
+    font-size: 2em;
+    color: white;
+    background: transparent !important;
+    border: dashed 1px white !important;
+    line-height: 1em;
+}
+.btn-votify-small {
+    padding: 0.5em;
+    font-size: 1em;
+}
+.btn-votify:hover {
+    color: #602d91;
+    background: white !important;
+    text-decoration: none;
+}
+.btn-votify.invert {
+    color: #602d91;
+    background: white !important;
+}
+.btn-votify.invert:hover {
+    color: white;
+    background: #602d91 !important;
+}
+p {
+   	color: #333;
+}
+p.text-error {
+    margin: 10px 0;
+}
+.btn {
+    border-radius: 0 !important;
+    background: white;
+    border: solid 1px #fff;
+}
+.big-logo {
+    font-family: 'ziontrain_pro_stencildemibold';
+}
+.big-logo .level_one {
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    letter-spacing: 10px;
+    font-size: 6em;
+    color: white;
+}
+.big-logo .level-two {
+    display: block-inline;
+    position: relative;
+    letter-spacing: 6px;
+}
+.big-logo .level-three {
+    letter-spacing: 0px;
+    position: absolute;
+    text-align: center;
+    margin-left: -30px;
+    width: 100%;
+    top: 50px;
+    left: 0;
+    font-size: 0.8em;
+    font-family: 'Reenie Beanie';
+}
+.suggestion-roller-content {
+    font-family: 'ziontrain_pro_stencildemibold';
+}
+.account-container ul {
+    list-style: none;
+}
+.account-container ul li {
+    display: inline;
+}
+.img-polaroid {
+    padding: 1px;
+}
+.title {
+    font-family: 'ziontrain_pro_stencildemibold', sans-serif;
+    font-size: 20px;
+    padding: 10px 0;
+
+    color: #fff;
+    line-height: 1em;
+    text-align: left !important;
+}
+.title-big {
+    font-size: 2em;
+    line-height: 1.4em;
+    text-align: left !important;
+}
+.dropdown-menu {
+    border-radius: 0 !important;
+    background-image: url(/static/img/dust-bg-purple-darker.png) !important;
+}
+.dropdown-menu li > a {
+    line-height: 30px;
+}
+.dropdown-menu li > a:hover {
+    background: #602d91 !important;
+    color: white !important;
+}
+.btn-group a {
+    background-image: url(/static/img/dust-bg-purple-darker.png);
+    border: 0;
+    box-shadow: none;
+}
+.main-navbar .navbar-inner {
+    border-bottom: solid 1px transparent !important;
+    background: white;
+    background-image: url(/static/img/dust-bg-purple-darker.png);
+    font-size: 16px;
+    min-height: 50px;
+    box-shadow: none;
+}
+.navbar-inner a {
+    color: #fff !important;
+    /*background-image: url(/static/img/dust-bg-purple-darker.png) !important;*/
+
+}
+.navbar-inner li > a:hover {
+    color: #fff !important;
+    background: #602d91 !important;
+}
+.navbar-inner li.active a {
+    color: #fff !important;
+    background: #602d91 !important;
+    box-shadow: none !important;
+}
+.nav-collapse a {
+    height: 30px;
+    line-height: 30px;
+}
+.brand img {
+    height: 30px;
+}
+.navbar-absolute {
+    position: fixed;
+    margin: 0;
+}
+.main-container {
+    margin-top: 80px;
+}
+.header-box {
+    text-align: center;
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+.header-box-text {
+    color: black;
+    font-size: 40px;
+    background: white;
+    line-height: 40px;
+    width: 90%;
+    margin: 20px auto;
+}
+.header-box-text-inner {
+    padding: 40px;
+}
+.header-box .label {
+    font-size: 30px;
+    line-height: 30px;
+    padding: 10px;
+    font-weight: normal;
+    white-space: normal;
+}
+.header-box .title {
+    font-size: 40px;
+    line-height: 40px;
+}
+.people-bg {
+    /*background-image: url(/static/img/people_bg.jpg);*/
+    background-size: 100%;
+}
+.vote-stats {
+    font-family: 'ziontrain_pro_stencildemibold';
+    font-size: 20px;
+}
+.idea-card {
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    /*-webkit-box-shadow: 1px 1px 8px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    1px 1px 8px rgba(50, 50, 50, 0.75);*/
+    box-shadow:         1px 2px 8px rgba(50, 50, 50, 0.75);
+    background: #602d91;
+    /*background-image: url('/static/img/dust-bg-purple-darker.png');*/
+    line-height: 1.2em;
+    /*word-spacing: -0.5em;*/
+    /*text-align: justify;*/
+    padding-right: 80px;
+    font-size: 0.8em;
+}
+.idea-card p {
+    color: #fff;
+    /*text-align: justify;*/
+}
+.idea-card a {
+    color: white;
+}
+.idea-card-row {
+    margin-bottom: 30px;
+}
+.idea-card-hr {
+    height: 2px;
+    background: #87C442;
+}
+.idea-card-hr-purple {
+    height: 1px;
+    border-top: dashed 1px white;
+    margin-bottom: 20px;
+}
+.idea-card .btn-vote {
+    font-family: 'ziontrain_pro_stencildemibold';
+    font-size: 20px;
+    width: 100%;
+    text-align: left;
+    border-radius: 0;
+    border: 0;
+    background: white;
+    color: #602d91;
+    padding: 10px 20px !important;
+    box-shadow: 1px 2px 8px rgba(50, 50, 50, 0.75);
+}
+.idea-card .btn-vote-yes {
+    color: #87C442;
+}
+.idea-card .yes-btn-holder .btn-vote:hover {
+    background: yellow;
+}
+.idea-card .no-btn-holder .btn-vote:hover {
+    background: #260734;
+}
+.idea-card .btn-vote-no {
+    color: #c44242;
+}
+.idea-card .vote-holder {
+    text-align: right;
+}
+.comment-holder {
+    margin: 20px 0;
+    border-bottom: solid 1px white;
+}
+.comment-box {
+    padding: 0px; margin-bottom: 20px;
+    /*background-image: url('/static/img/dust-bg-purple-darker.png');*/
+    /*padding: 20px 0 0 0;*/
+    /*border-top: dashed 1px white;*/
+}
+.comment-box .top {
+    border-top: dashed 1px white;
+    padding-top: 10px;
+}
+.comment-box .profile-img {
+    display: block;
+    float: right;
+}
+.comment-box .profile {
+    float: left;
+    color: #260734;
+}
+.comment-box .profile .name {
+    display: block;
+    font-size: 14px;
+    padding-bottom: 6px;
+    font-weight: bold;
+    color: #260734;
+}
+.icon-fix {
+    display: inline-block; margin-top: 3px;
+}
+.label-votify {
+    font-size: 20px;
+    padding: 10px;
+}
+.cloudtip {
+    background: white;
+    position: absolute;
+    margin-top: 4px;
+}
+.argument-comment-form {
+    width: 100%;
+}
+.label-purple {
+    background: #522E91;
+    padding: 4px;
+}
+.socialaccount_ballot {
+    margin: 20px 0;
+}
+.socialaccount_providers {
+    margin: 0;
+}
+.socialaccount_providers li {
+    margin-right: 20px;
+}
+
+/* tinymce img style */
+.img_left {
+    float: left;
+    margin: 0 20px 10px 0;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    width: 90%;
+    margin: 20px auto;
+}
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+

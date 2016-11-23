@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %} - Pretraživanje prijedloga{% endblock %}
+
+{% block content %}
+
+    {% include 'idea/partials/_list.html' with main_title='Pretraživanje prijedloga'|upper %}
+
+    <script type="text/javascript">
+        $(function(){
+            IdeaSmallBox.config.load.order = 'top';
+            IdeaSmallBox.config.cols_no = 1;
+            IdeaSmallBox.config.load.template = 'partials/small_item.html';
+            IdeaSmallBox.load(true);
+        });
+    </script>
+
+{% endblock %}

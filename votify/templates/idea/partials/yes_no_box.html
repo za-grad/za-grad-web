@@ -1,0 +1,123 @@
+{% include 'idea/partials/yes_no_btns.html' %}
+
+<script type="text/javascript">
+    $(function(){
+
+        function load_comments() {
+            $.getJSON('{% url idea_comment_list idea.id "positive" %}', function(data){
+                $('.comment-yes-holder').html(data.list);
+            });
+            $.getJSON('{% url idea_comment_list idea.id "negative" %}', function(data){
+                $('.comment-no-holder').html(data.list);
+            });
+        }
+
+        function load_vote_buttons() {
+            $.getJSON('{% url idea_vote_btns idea.id %}', function(data){
+                $('.yes-btn-holder').html(data.yes_btn_html);
+                $('.no-btn-holder').html(data.no_btn_html);
+            });
+        }
+
+        $(document).on('click', '.btn-vote', function(e){
+            Votify.Login.require_login();
+            var current_el = $(this);
+            var url = current_el.attr('href');
+            var form_url = current_el.data('form-action-url');
+            $.postJSON(url, {}, function(data){
+                // load_vote_buttons(data);
+                // var parent = current_el.closest('.btn-vote-holder').parent();
+                // console.log(parent);
+                $('.btn-vote-holder.yes .count').text(data.yes_count);
+                $('.btn-vote-holder.no .count').text(data.no_count);
+                if (data.action == 'create' || data.action == 'update') {
+                    $.getJSON(form_url, function(data){
+                        var form = $(data.form);
+                        var form_holder_selector = '.comment-yes-form-holder';
+                        form.attr('action', form_url);
+                        if (data.state == 'negative') {
+                            form_holder_selector = '.comment-no-form-holder';
+                        }
+                        $(form_holder_selector).cloudtip(form);
+                        $('.argument-comment-form textarea').autosize().focus();
+                    });
+                }
+            });
+            // return false;
+        });
+
+        $(document).on('submit', '.argument-comment-form', function(e){
+            var form = $(this);
+            var url = form.attr('action');
+            var comment = form.find('#id_comment').val();
+            if ($.trim(comment) != '') {
+                $(this).find('input[type="submit"]').attr('disabled', '');
+                $.postJSON(url, {comment: comment}, function(data){
+                    $('.argument-comment-form').closest('.cloudtip').fadeOut(function(){
+                        $(this).remove();
+                    });
+                    load_comments();
+                });
+            }
+            return false;
+        });
+
+        $('body').on('input propertychange', '.argument-comment-form #id_comment', function(){
+            var target_el = $(this);
+            var holder = target_el.closest('.argument-comment-form');
+            holder.find('.char-count').text('Preostalo znakova: ' + (500 - target_el.val().length));
+        });
+
+        $('body').on('click', '.btn-flag-comment', function(e){
+            var current_el = $(this);
+            $.postJSON(current_el.data('action-url'), {}, function(data){
+                current_el.closest('.comment-box').html(data.html);
+            });
+            return false;
+        });
+
+        $('body').on('click', '.btn-unflag-comment', function(e){
+            var current_el = $(this);
+            $.postJSON(current_el.data('action-url'), {}, function(data){
+                current_el.closest('.comment-box').html(data.html);
+            });
+            return false;
+        });
+
+
+        //
+        // subcomments
+        //
+
+        function toggle_subcomments(holder) {
+            holder = $(holder);
+            var subcomments = holder.find('.subcomments');
+            if (subcomments.data('visible') == false) {
+                $.getJSON(subcomments.data('list-url'), function(html){
+                    subcomments.html(html.list);
+                    subcomments.show();
+                    subcomments.data('visible', true);
+                    holder.find('.btn-show-subcomments .subcomments-title').text('SAKRIJ KOMENTARE');
+                });
+            } else {
+                subcomments.hide();
+                subcomments.data('visible', false);
+                holder.find('.btn-show-subcomments .subcomments-title').text('PRIKAŽI KOMENTARE');
+            }
+        }
+        $(document).on('click', '.btn-show-subcomments', function(e){
+            toggle_subcomments($(this).closest('.subcomments-holder'));
+            return false;
+        });
+
+
+
+        //
+        // init calls
+        //
+
+        load_comments();
+        load_vote_buttons();
+
+    });
+</script>

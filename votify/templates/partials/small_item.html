@@ -1,0 +1,7 @@
+<div class="row-fluid">
+    <a class="idea-small-item" href="{{ url }}">
+        <div class="span10 title">{{ title|upper }}</div>
+        <div class="span2 points">{% block points %}BODOVI: {{ points|floatformat:"0" }}{% endblock %}</div>
+        {% include 'snippets/hr.html' %}
+    </a>
+</div>

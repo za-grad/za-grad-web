@@ -1,0 +1,65 @@
+{% extends 'members/base.html' %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span3">
+            {% with comments_no=profile.user.comments.count %}
+                <div class="list-item profile-details-list-item" title="<p>
+                    U želji da smanjimo apatiju, želimo politiku učiniti zabavnijom. Stoga naša stranka i naš web ima i elemente nagradne igre - najvjernije sudionike u radu naše platforme nagrađujemo bodovima:
+                </p>
+                <ul>
+                    <li>Prijedlog = 10 bodova</li>
+                    <li>Svaki glas za vaš prijedlog = 1 bod</li>
+                    <li>Svaki glas za prijedlog = 1 bod</li>
+                </ul>">
+                    <div class="img-box">
+                        {% thumbnail profile.photo "800x800" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </div>
+                    <div class="triangle"></div>
+                    <div class="title">{{ profile.name|upper }}</div>
+                    <div class="entry subpoints">
+                        <div class="left">ODOBRENIH PRIJEDLOGA ... </div>
+                        <div class="right">{{ profile.approved_ideas_no }}</div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="entry subpoints">
+                        <div class="left">BODOVI OD PRIJEDLOGA ... </div>
+                        <div class="right">{{ profile.own_ideas_vote_diff }}</div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="entry subpoints">
+                        <div class="left">PUTA GLASAO ... </div>
+                        <div class="right">{{ profile.votes_no }}</div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="entry points">
+                        <div class="left">BODOVA ... </div>
+                        <div class="right total-points">{{ profile.points|default:"0"|floatformat:"0" }}</div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            {% endwith %}
+        </div>
+        <div class="span9">
+            <legend>KORISNIKOVI TOP PRIJEDLOZI</legend>
+            {% include 'idea/partials/_list.html' %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.idea-list-filter .idea-filter-order').val('top');
+            IdeaSmallBox.config.load.filter_user_id = {{ profile.user.id }};
+            IdeaSmallBox.load(true);
+
+            $('.profile-details-list-item').tooltip({
+                placement: 'bottom',
+                html: true
+            });
+        });
+    </script>
+
+{% endblock %}

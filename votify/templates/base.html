@@ -1,0 +1,245 @@
+{% load socialaccount %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ZA GRAD {% block main_page_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZA GRAD je politička stranka koju svojim prijedlozima kreiraš TI!" />
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link href="{{ STATIC_URL }}fonts/stylesheet.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}bootstrap/less/style.css" rel="stylesheet">
+    <link rel="icon" type="image/ico" href="{{ STATIC_URL }}img/favicon.ico"/>
+
+    <script type="text/html" id="alert-template">
+      <div class="alert">
+          <%= msg %>
+          <a href="#" class="close">×</a>
+      </div>
+    </script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/underscore-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.custom.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.autosize-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/votify.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/json2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/respond.min.js"></script>
+
+    {% block extra_head %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-absolute navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            {% if not request.subdomain %}
+              {% include 'navbar/default.html' %}
+            {% else %}
+              {% with subdomain_navbar='navbar/'|add:request.subdomain|add:'.html' %}
+                {% include subdomain_navbar %}
+              {% endwith %}
+            {% endif %}
+            <ul class="nav pull-right navbar-right">
+                <li>
+                    <div class="btn-group navbar-right span4">
+                        {% if user.is_authenticated %}
+                            <a class="btn dropdown-toggle btn-main" data-toggle="dropdown" href="#">
+                              <span style="padding-left: 15px;">
+                                {% thumbnail user.get_profile.photo "30x30" crop="center" as im %}
+                                    <img class="img-polaroid pull-right" style="display: inline-block; padding: 0px; margin-top: 4px; margin-right: 4px;" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                {% endthumbnail %}
+                                {{ user.get_profile.name }}
+                              </span>
+                            </a>
+                            <ul class="dropdown-menu span4">
+                                <li><a href="{% url members_edit_profile %}">Uređivanje profila</a></li>
+                                <li><a href="{% url members_details user.id %}">Pregled profila</a></li>
+                                <li><a href="{% url account_logout %}">Odjava</a></li>
+                            </ul>
+                        {% else %}
+                            <a class="btn dropdown-toggle btn-main" data-toggle="dropdown" href="#">
+                                <span style="padding-left: 15px;">
+                                    Prijava / Registracija
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu span4">
+                                <li><a href="{% url account_login %}">Prijava</a>
+                                {% comment %}
+                                <li><a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook</a></li>
+                                <li><a href="{% provider_login_url "twitter" method="oauth2" %}">Twitter</a></li>
+                                <li><a href="{% provider_login_url "google" method="oauth2" %}">Google</a></li>
+                                {% endcomment %}
+                                <li><a href="{% url account_signup %}">Registracija</a>
+                            </ul>
+                        {% endif %}
+                        <div class="triangle"></div>
+                    </div>
+                </li>
+            </ul>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" style="position: relative;">
+      <div class="alert-holder">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">
+                    {{ message }}
+                    <a href="#" class="close">×</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="container-fluid banner-holder">
+      <div class="row-fluid">
+        <div class="span12">
+          {% include 'partials/main_banner4.html' %}
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" style="height: 40px;"></div>
+    <div class="container" style="min-height: 600px;">
+      <div class="sidebar-right">
+        <div class="give-idea-holder">
+          <a href="{% url idea_create %}" class="give-idea">
+            <div class="give-idea-image"></div>
+            <div class="give-idea-text">ZA KAKAV SI TI GRAD?</div>
+          </a>
+        </div>
+        <div class="empty"></div>
+        <a target='_blank' href="{{ FACEBOOK_PAGE }}" class="facebook"></a>
+        <a target='_blank' href="{{ TWITTER_PAGE }}" class="twitter"></a>
+      </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div class="container-fluid footer">
+      <div class="top">
+        <div class="container" style="position: relative;">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="side-pointer" style="position: absolute; width: 100%; margin-left: -60px;">>></div>
+              <div style="text-align: center;">ZA GRAD je politička stranka koju svojim prijedlozima kreiraš TI!</div>
+              <div class="side-pointer" style="position: absolute; right: 0; margin-right: -50px; margin-top: -60px;"><<</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="container">
+          <div class="row-fluid">
+            <div class="span9">
+              <ul class="navigation">
+
+                <li><a href="{% url news_list_page %}">NOVOSTI</a></li>
+
+                <li style="width: 110px; height: 160px;">
+                  PRIJEDLOZI
+                  <ul>
+                    <li class=""><a href="{% url idea_create %}">daj prijedlog</a></li>
+                      <li class=""><a href="{% url idea_list_page %}">pregled prijedloga</a></li>
+                      <li class=""><a href="{% url advance_idea_list_page %}">detaljna pretraga</a></li>
+                      <li><a href="{% url page_view 'kako-koristiti' %}">upute</a></li>
+                    </li>
+                  </ul>
+                </li>
+                {% comment %}
+                <li style="width: 150px; height: 215px;">
+                  BLOG
+                  <ul>
+                    {% for slug, district in BLOGS %}
+                      <li><a href="{% url blog_entries slug %}">{{ district }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endcomment %}
+                <li style="width: 140px; height: 160px;">
+                  TKO SMO?
+                  <ul>
+                    <li><a href="{% url page_view 'o-nama' %}">o nama</a></li>
+                    <li><a href="{% url page_view 'nasi_ljudi' %}">naši ljudi</a></li>
+                    <li><a href="{% url page_view 'program' %}">naš program</a></li>
+                    <li><a href="{% url page_view 'dokumenti' %}">dokumenti</a></li>
+                    <li><a href="{% url page_view 'faq' %}">često postavljana pitanja</a></li>
+                  </ul>
+                </li>
+
+                <li style="height: 80px;">
+                  PODRŽI NAS
+                  <ul>
+                    <li><a href="{% url page_view 'doniraj' %}">doniraj</a></li>
+                    <li><a href="{% url page_view 'uclani-se' %}">učlani se</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="{% url member_list %}">KORISNICI</a></li>
+
+                <li><a href="{% url contact_page %}">KONTAKT</a></li>
+
+              </ul>
+            </div>
+            <div class="span3">
+              <div class="pull-right" style="margin-top: -10px;">
+                {% include 'snippets/fb_tw_box.html' with tw_link=TWITTER_PAGE fb_link=FACEBOOK_PAGE %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: none;" class="get-mobile-footer">
+      <div class="container">
+        {% csrf_token %}
+        <span class="get-mobile-tip">Spremni za akciju? Ostavite broj mobitela</span><input type="text" placeholder="09x xxxx xxx" class="get-mobile-input"><a href="#" class="btn-mobile-send">ŠALJI >></a><span class="get-mobile-msg"></span>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39561213-1']);
+      _gaq.push(['_setDomainName', 'za-grad.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      $(function(){
+        $('.auto-tooltip').tooltip({
+          placement: 'right',
+        });
+      });
+    </script>
+
+  </body>
+</html>

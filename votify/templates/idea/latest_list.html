@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %} - Prijedlozi{% endblock %}
+
+{% block content %}
+
+    {% include 'idea/partials/_list.html' with main_title='Prijedlozi'|upper %}
+
+    <script type="text/javascript">
+        $(function(){
+            IdeaSmallBox.config.load.load_create_link = true;
+            IdeaSmallBox.config.load.order = 'latest';
+            IdeaSmallBox.load(true);
+        });
+    </script>
+
+{% endblock %}

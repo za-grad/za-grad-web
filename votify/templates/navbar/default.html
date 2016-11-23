@@ -1,0 +1,48 @@
+<ul class="nav">
+  <li {% if page_name == 'news_list' %}class="active"{% endif %}><a href="{% url news_list_page %}">NOVOSTI</a></li>
+  <li class="dropdown {% if page_name == 'o-nama' or page_name == 'nasi_ljudi' or page_name == 'program' or page_name == 'dokumenti' or page_name == 'faq' %}active{% endif %}">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          TKO SMO?
+      </a>
+      <ul class="dropdown-menu">
+          <li><a href="{% url page_view 'o-nama' %}">O NAMA</a></li>
+          <li><a href="{% url page_view 'nasi_ljudi' %}">NAŠI LJUDI</a></li>
+          <li><a href="{% url page_view 'program' %}">NAŠ PROGRAM</a></li>
+          <li><a href="{% url page_view 'dokumenti' %}">DOKUMENTI</a></li>
+          <li><a href="{% url page_view 'faq' %}">ČESTO POSTAVLJANA PITANJA</a></li>
+      </ul>
+  </li>
+  <li class="dropdown {% if page_name == 'doniraj' or page_name == 'uclani-se' %}active{% endif %}">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          PODRŽI NAS
+      </a>
+      <ul class="dropdown-menu">
+          <li><a href="{% url page_view 'doniraj' %}">DONIRAJ</a></li>
+          <li class="auto-tooltip" title="Za ispunjavanje pristupnice potrebno je prijaviti se na naše stranice."><a href="{% url page_view 'uclani-se' %}">UČLANI SE</a></li>
+          <li><a href="{% url page_view 'aktiviraj-se' %}">AKTIVIRAJ SE</a></li>
+      </ul>
+  </li>
+  {% comment %}
+  <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          BLOG
+      </a>
+      <ul class="dropdown-menu">
+        {% for slug, district in BLOGS %}
+          <li><a href="{% url blog_entries slug %}">{{ district }}</a></li>
+        {% endfor %}
+      </ul>
+  </li>
+  {% endcomment %}
+  <li class="dropdown {% if page_name == 'idea_list' or page_name == 'idea_create' or page_name == 'kako-koristiti' %}active{% endif %}">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          PRIJEDLOZI
+      </a>
+      <ul class="dropdown-menu">
+          <li><a href="{% url idea_create %}">DAJ PRIJEDLOG</a></li>
+          <li><a href="{% url idea_list_page %}">PREGLED PRIJEDLOGA</a></li>
+          <li><a href="{% url member_list %}">KORISNICI</a></li>
+      </ul>
+  </li>
+  <li {% if page_name == 'contact' %}class="active"{% endif %}><a href="{% url contact_page %}">KONTAKT</a></li>
+</ul>

@@ -1,0 +1,9 @@
+<div class="btn-vote-holder {{ vote_state }}">
+    <button class="btn-vote" data-form-action-url="{% url idea_create_comment idea.id comment_state %}" href="{% url idea_vote idea.id vote_state %}">
+        <span class="small-label">glasaj </span>{{ label }}!
+    </button>
+    <span class="pull-right count">{{ count }}</span>
+    <div class="btn-triangle"></div>
+    <div class="bottom-triangle"></div>
+    <div style="clear: both;"></div>
+</div>

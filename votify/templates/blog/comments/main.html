@@ -1,0 +1,14 @@
+<div class="blog-entry-comment-holder">
+    <h5>Komentiraj</h5>
+
+    <textarea class="comment-text" style="width: 100%;" placeholder="Upiši svoj komentar ovdje"></textarea>
+
+    <div class="btn-custom-small">
+        <button class="btn-submit add-comment" data-url="{% url blog_comment_add blog_entry_id=entry.id %}">Dodaj komentar</button>
+        <div class="btn-triangle"></div>
+    </div>
+
+    <div style="clear: both; margin-bottom: 20px;"></div>
+
+    <div class="list-holder" data-url="{% url blog_comment_list blog_entry_id=entry.id %}"></div>
+</div>

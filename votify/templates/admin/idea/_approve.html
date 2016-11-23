@@ -1,0 +1,6 @@
+{% if obj.approved == None %}
+    <div style="width: 120px; text-align: center;">
+        <a class="btn-approve" data-method="post" style="color: green; font-size: 12px; margin-right: 20px;" data-should-prompt="Jesi li siguran da želiš odobriti prijedlog?" data-redirect-url="" href="{% url idea_approve idea_id=obj.id %}">Odobri</a>
+        <a class="btn-disapprove" style="color: red; font-size: 12px;" data-should-prompt="Jesi li siguran da želiš obustaviti prijedlog?" data-redirect-url="" href="{% url idea_disapprove idea_id=obj.id %}">Zabrani</a>
+    </div>
+{% endif %}

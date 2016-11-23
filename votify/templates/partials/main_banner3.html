@@ -1,0 +1,17 @@
+<div style="background: #530072;">
+    <div class="container" style="position: relative;">
+        <div style="padding: 2px 0 0 2px; margin: 8px 0; float: left; background: #fff;">
+            {% for el in PEOPLE_IMAGES %}
+                <div style="float: left; width: 12.5%;">
+                    <div style="padding: 0 2px 2px 0;">
+                        <img style="padding: 0; margin: 0; border: 0;" src="{{ STATIC_URL }}bootstrap/img/people/{{ el }}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="position: absolute; width: 100%; height: 100%;">
+            <div style="margin: 0 auto; background: #530072; width: 30%; height: 50%; margin-top: 50px;"></div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>

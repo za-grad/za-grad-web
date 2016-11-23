@@ -1,0 +1,20 @@
+<div class="fb-tw-box">
+    {% if tw_link %}
+        <div class="separator {% if color == 'purple' %}purple{% endif %}">
+        </div>
+        <a target="_blank" class="soc-link tw" href="{{ tw_link }}">
+            <img src="{{ STATIC_URL }}bootstrap/img/icons/tw{% if not color == 'purple' %}_w{% endif %}.png" />
+        </a>
+    {% endif %}
+    {% if fb_link %}
+        <div class="separator {% if color == 'purple' %}purple{% endif %}">
+        </div>
+        <a target="_blank" class="soc-link fb" href="{{ fb_link }}">
+            <img src="{{ STATIC_URL }}bootstrap/img/icons/fb{% if not color == 'purple' %}_w{% endif %}.png" />
+        </a>
+    {% endif %}
+    <div class="pre-text {% if color == 'purple' %}purple{% endif %}">
+        {{ pretext|default:"prati nas:" }}
+    </div>
+</div>
+<div style="clear: both;"></div>

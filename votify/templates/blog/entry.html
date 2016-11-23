@@ -1,0 +1,35 @@
+{% extends 'partials/list_item.html' %}
+{% load thumbnail %}
+
+{% block item_style %}
+    type_one
+{% endblock %}
+
+{% block image %}
+    {% if entry.image %}
+        {% thumbnail entry.image "800" crop="center" as im %}
+            <img style="min-width: 100%" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+    {% endif %}
+{% endblock %}
+{% block username %}
+{% endblock %}
+{% block title %}
+    <a href="{% url blog_entry slug=entry.holder.slug id=entry.id title_slug=entry.title_slug %}">{{ entry.title|upper }}</a>
+    <div style="clear: both;"></div>
+    <div class="pull-right" style="font-size: 12px;">{{ entry.date|date:"DATE_FORMAT" }}</div>
+    <div style="clear: both;"></div>
+{% endblock %}
+{% block text %}
+    {{ entry.text|safe }}
+    {% if entry.share %}
+        {% include 'snippets/fb_tw_box.html' with pretext='podijeli' color="purple" fb_link=entry.share.facebook tw_link=entry.share.twitter %}
+    {% endif %}
+    {% if user.is_authenticated %}
+        {% include 'blog/comments/main.html' with entry=entry %}
+    {% else %}
+        <a href="{% url account_login %}?next={% url blog_entry slug=entry.holder.slug id=entry.id title_slug=entry.title_slug %}">Prijavi se</a> da bi ostavio/la komentar.
+    {% endif %}
+{% endblock %}
+{% block bottom %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% for x in entry.comments.all %}
+    <div class="blog-comment-entry">
+        <div>{{ x.comment }}</div>
+        <div class="signature">
+            {% if user.id == x.author.id %}
+                <div class="pull-left"><a class="delete-comment" href="#" data-url="{% url blog_comment_delete x.id %}">Obriši komentar</a></div>
+            {% endif %}
+            <div class="pull-right">{{ x.author.profile.name }}, {{ x.updated }}</div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+{% endfor %}

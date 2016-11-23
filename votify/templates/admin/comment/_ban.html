@@ -1,0 +1,4 @@
+<div style="width: 120px; text-align: center; float: left;">
+    <a class="btn-comment-ban" style="color: red; font-size: 12px; display: block; margin-bottom: 20px;" data-method="post" data-redirect-url="" href="{% url idea_comment_ban obj.id %}">Označi kao spam</a>
+    <a class="btn-comment-unban" style="color: green; font-size: 12px; display: block; " data-method="post" data-redirect-url="" href="{% url idea_comment_unban obj.id %}">Nije spam</a>
+</div>

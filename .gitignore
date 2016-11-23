@@ -1,0 +1,8 @@
+*.pyc
+/*/settings/local.py
+/*/settings/secret.py
+/*/static/
+/*/media/
+/dev.db
+todo.txt
+votify/staticfiles/bootstrap/less/style.css

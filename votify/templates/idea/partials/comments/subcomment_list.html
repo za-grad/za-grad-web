@@ -1,0 +1,15 @@
+{% load thumbnail %}
+{% if list %}
+    {% for comment in list %}
+        <div style="font-size: 0.8em; margin-bottom: 20px;">
+            {% thumbnail comment.user.get_profile.photo "24x24" crop="center" as im %}
+                <img class="img-polaroid" style="margin-right: 10px; display: block; float: left;" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+            <span style="font-weight: bold;">{{ comment.user.get_profile.name }}</span> - {{ comment.comment }}
+        </div>
+    {% endfor %}
+{% else %}
+    <div style="font-size: 0.8em; margin-bottom: 20px;">
+        Nema komentara.
+    </div>
+{% endif %}

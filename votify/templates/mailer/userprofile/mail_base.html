@@ -1,0 +1,9 @@
+{% if include_greeting %}
+Bok {{ name }},<br><br>
+{% endif %}
+
+{{ html_body|safe }}<br><br>
+
+Ukoliko na želiš primati naše obavijesti posjeti svoj <a href="{{SITE_URL}}{% url members_edit_profile %}">profil na našoj stranici</a> i ukloni opciju "Želim primati obavijesti".<br><br>
+
+Stranka ZA GRAD

@@ -1,0 +1,6 @@
+{% for err in form.non_field_errors %}
+    <p class="text-error">{{ err }}</p>
+{% endfor %}
+{% for field in form %}
+    {% include "snippets/form-field.html" with field=field only %}
+{% endfor %}

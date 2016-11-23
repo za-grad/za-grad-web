@@ -1,0 +1,18 @@
+{% extends 'partials/list_item.html' %}
+
+{% block image %}
+    {% if image %}
+        <img src="{{ image }}" />
+    {% endif %}
+{% endblock %}
+{% block username %}
+{% endblock %}
+{% block title %}
+    {{ title|upper }}
+    <div style="clear: both;"></div>
+    <div class="pull-right" style="font-size: 12px;">{{ updated|date:"DATE_FORMAT" }}</div>
+    <div style="clear: both;"></div>
+{% endblock %}
+{% block text %}
+    {{ text|safe|striptags|truncatewords:50 }}
+{% endblock %}

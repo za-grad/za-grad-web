@@ -1,0 +1,25 @@
+{% extends 'partials/list_item.html' %}
+{% load thumbnail %}
+
+{% block item_style %}
+    type_one
+{% endblock %}
+
+{% block image %}
+    {% if page.image.name %}
+        {% thumbnail page.image "800" crop="center" as im %}
+            <img style="min-width: 100%" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+    {% endif %}
+{% endblock %}
+{% block username %}
+{% endblock %}
+{% block title %}
+    {{ page.title|upper }}
+{% endblock %}
+{% block text %}
+    {{ page.content|safe }}
+    {% include 'snippets/fb_tw_box.html' with pretext='podijeli' color="purple" fb_link=page.share.facebook tw_link=page.share.twitter %}
+{% endblock %}
+{% block bottom %}
+{% endblock %}

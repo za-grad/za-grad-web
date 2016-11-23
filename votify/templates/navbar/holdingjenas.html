@@ -1,0 +1,15 @@
+<ul class="nav">
+  <li><a href="{{ SITE_URL }}">ZA GRAD</a></li>
+  <li {% if page_name == 'news_list' %}class="active"{% endif %}><a href="{% url news_list_page %}">NOVOSTI</a></li>
+  <li class="dropdown {% if page_name == 'idea_list' or page_name == 'idea_create' or page_name == 'kako-koristiti' %}active{% endif %}">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          PRIJEDLOZI
+      </a>
+      <ul class="dropdown-menu">
+          <li><a href="{% url idea_create %}">DAJ PRIJEDLOG</a></li>
+          <li><a href="{% url idea_list_page %}">PREGLED PRIJEDLOGA</a></li>
+      </ul>
+  </li>
+  <li {% if page_name == 'dokumenti' %}class="active"{% endif %}><a href="{% url page_view 'dokumenti' %}">DOKUMENTI</a></li>
+  <li {% if page_name == 'contact' %}class="active"{% endif %}><a href="{% url contact_page %}">KONTAKT</a></li>
+</ul>

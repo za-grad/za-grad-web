@@ -1,0 +1,14 @@
+{% with comments=list %}
+    {% if comments %}
+        {% for comment in comments %}
+            {% include 'snippets/hr.html' %}
+            <div class="comment-box {% cycle 'row1' 'row2' %}">
+                {% include 'idea/partials/comments/inner.html' %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="comment-box">
+            Nema komentara.
+        </div>
+    {% endif %}
+{% endwith %}

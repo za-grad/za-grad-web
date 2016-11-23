@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://za-grad.com/prijedlozi/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/novosti/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/accounts/login/?next=/prijedlozi/daj/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/prijedlozi/detaljno/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/o-nama/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/nasi_ljudi/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/program/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/dokumenti/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/faq/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/podrzi-nas/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/uclani-se/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/korisnici/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/kako-koristiti/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/kontakt/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/accounts/login/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/accounts/signup/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/accounts/password/reset/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/media/votify/filebrowser/statut_za_grad.pdf</loc>
+  <lastmod>2013-03-23T16:35:21+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://za-grad.com/uvjeti/</loc>
+  <changefreq>daily</changefreq>
+</url>
+</urlset>

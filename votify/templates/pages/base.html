@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %} - {{ page.title }}{% endblock %}
+
+{% block extra_head %}
+    {% if page.image.name %}
+        <meta property="og:image" content="{{ SITE_URL }}{{ page.image.url }}"/>
+    {% endif %}
+    <meta property="og:title" content="{{ page.title }}"/>
+    <meta property="og:description" content="{{ page.content|safe|striptags }}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <div class="span8">
+            {% block details %}
+                {% include 'pages/partials/details.html' %}
+            {% endblock %}
+        </div>
+        {% url pages_sidebar_list as url %}
+        {% include 'pages/partials/sidebar_pages.html' with url=url %}
+    </div>
+
+{% endblock %}

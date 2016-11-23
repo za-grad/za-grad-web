@@ -1,0 +1,18 @@
+{% extends 'partials/list_item.html' %}
+
+{% block image %}
+    {% if image %}
+        <img src="{{ image }}" />
+    {% endif %}
+{% endblock %}
+{% block username %}
+{% endblock %}
+{% block title %}
+    {{ title|upper }}
+{% endblock %}
+{% block text %}
+    {{ text|safe }}
+    <p style="margin-top: 20px;"></p>
+    <p style="font-size: 1.2em;" class="title">Email: {{ email }}</p>
+    <p style="font-size: 1.2em;" class="title">Tel / Mob: {{ phone }}</p>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+
+{% block content %}
+
+    <div class="span4 form-holder">
+
+        <div>
+            <div class="title pull-left">
+                PRIJAVA
+            </div>
+            <div class="pull-right">
+                <div class="socialaccount_providers pull-right">
+                    {% include "socialaccount/snippets/provider_list.html" %}
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {% include 'snippets/form.html' %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <p>
+                <a href="{% url 'account_reset_password' %}">Zaboravili ste lozinku?</a> |
+                <a href="{% url 'account_signup' %}">Registracija</a>
+            </p>
+            {% include 'snippets/btn.html' with label="prijava" %}
+        </form>
+
+        <p>
+            {% if user.is_authenticated %}
+                {% include "account/snippets/already_logged_in.html" %}
+            {% endif %}
+        </p>
+
+    </div>
+
+{% endblock %}
+

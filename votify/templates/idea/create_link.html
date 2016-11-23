@@ -1,0 +1,24 @@
+<div class="list-item create-idea-item static">
+    <a href="{% url idea_create %}" class="list-item-link">
+        <div class="img-box">
+            {% block image %}
+                <img src="{{ STATIC_URL }}bootstrap/img/bg/za_kakav_si_ti_grad.jpg" />
+            {% endblock %}
+        </div>
+        <div class="triangle">
+        </div>
+        <div class="content">
+            <div class="user">
+                {% if user.is_authenticated %}{{ user.get_profile.name }}, {% endif %}{% now "DATE_FORMAT" %}
+            </div>
+            <div class="title">
+                DAJ PRIJEDLOG!
+            </div>
+            {% include 'snippets/hr.html' %}
+            <div class="text">
+                Opis prijedloga...
+            </div>
+            {% include 'snippets/hr.html' %}
+        </div>
+    </a>
+</div>

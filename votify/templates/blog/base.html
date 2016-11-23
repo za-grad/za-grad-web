@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}{% endblock %}
+
+{% block extra_head %}
+    <meta property="og:image" content="{{ SITE_URL }}{{ fb_meta.image }}"/>
+    <meta property="og:title" content="{{ fb_meta.title }}"/>
+    <meta property="og:description" content="{{ fb_meta.content|safe|striptags|truncatewords:50 }}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <div class="span8 blog">
+            <h1 class="h-title"><a href="{% url blog_entries blog_holder.slug %}">Blog - {{ blog_holder.district }}</a></h1>
+            {% for entry in entries %}
+                {% include 'blog/entry.html' %}
+            {% endfor %}
+        </div>
+        {% url blog_sidebar slug=blog_holder.slug as url %}
+        {% include 'pages/partials/sidebar_pages.html' with url=url %}
+    </div>
+
+    <script type="text/javascript">
+        function reload_comments(holder) {
+            var url = holder.data('url');
+            $.getJSON(url, function(data){
+                holder.html(data.html);
+            });
+        }
+
+        $('.blog-entry-comment-holder .add-comment').click(function(){
+            var current_el = $(this);
+            var url = current_el.data('url');
+            var holder = current_el.closest('.blog-entry-comment-holder');
+            var text = holder.find('.comment-text').val();
+            if (text != "") {
+                $.postJSON(url, {'comment': text}, function(data){
+                    holder.find('.comment-text').val('');
+                    reload_comments(holder.find('.list-holder'));
+                });
+            }
+            return false;
+        });
+
+        $(document).on('click', '.blog-entry-comment-holder .delete-comment', function(){
+            var current_el = $(this);
+            var url = current_el.data('url');
+            var holder = current_el.closest('.blog-entry-comment-holder');
+            $.postJSON(url, {}, function(data){
+                reload_comments(holder.find('.list-holder'));
+            });
+            return false;
+        });
+
+        $('.blog-entry-comment-holder .list-holder').each(function(idx, el){
+            reload_comments($(el));
+        });
+
+    </script>
+
+{% endblock %}

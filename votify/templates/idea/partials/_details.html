@@ -1,0 +1,35 @@
+{% extends 'partials/list_item.html' %}
+{% load thumbnail %}
+
+{% block item_style %}
+    type_one
+{% endblock %}
+
+{% block image %}
+    {% if idea.image.name %}
+        {% thumbnail idea.image "800" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+    {% endif %}
+{% endblock %}
+{% block username %}
+    <a href="{{ idea.user.get_profile.details_url }}">{{ idea.user.get_profile.name|upper }}</a>, {{ idea.updated.date }}
+{% endblock %}
+{% block title %}
+    {{ idea.title|upper }}
+    <div class="district pull-right">{{ idea.district|lower }}{% if idea.category %}, {{ idea.category|lower }}{% endif %}</div>
+{% endblock %}
+{% block text %}
+    {{ idea.description_html|safe }}
+    <div style="margin-top: 20px;">
+        <a class="bold-link hide" href="#">KOMENTIRAJ</a>
+        {% include 'snippets/fb_tw_box.html' with pretext='podijeli prijedlog koji ti se sviđa' color="purple" fb_link=idea.share.facebook tw_link=idea.share.twitter %}
+    </div>
+{% endblock %}
+{% block bottom %}
+    <div class="row-fluid">
+        <div class="span11 discussion">
+            {% include 'idea/partials/yes_no_box.html' %}
+        </div>
+    </div>
+{% endblock %}

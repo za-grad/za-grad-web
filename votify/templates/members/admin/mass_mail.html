@@ -1,0 +1,62 @@
+{% extends 'admin/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block extrahead %}
+    <script type="text/javascript" src="{{ STATIC_URL }}grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce_setup.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <nav id="grp-breadcrumbs" class="">
+        <header style="display:none"><h1>Breadcrumbs</h1></header>
+        <ul class="grp-horizontal-list">
+            <li><a href="/admin/">{% trans 'Home' %}</a></li>
+            <li>Pošalji e-mail svim korisnicima</li>
+        </ul>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+<h1>Pošalji e-mail svim korisnicima</h1>
+<form method="post" class="send-mass-mail-form">
+    {% csrf_token %}
+    <div>
+        {{ form|bootstrap }}
+    </div>
+    <div style="margin-top: 20px;">
+        <input class="grp-button grp-default" type="submit" value="ŠALJI">
+    </div>
+</form>
+
+<style type="text/css">
+    #id_subject {
+        width: 400px;
+    }
+    .control-group {
+        padding-bottom: 10px 0;
+    }
+    .control-label {
+        padding: 10px 0;
+        display: block;
+    }
+    body#tinymce {
+        color: black !important;
+    }
+</style>
+
+<script type="text/javascript">
+
+    (function($){
+
+        $(function(){
+            $('.send-mass-mail-form').submit(function(e){
+                return confirm('Ovu poruku primiti će {{ total_recipients }} korisnika. Želiš li nastaviti?')
+            });
+        });
+
+    })(django.jQuery);
+
+</script>
+{% endblock %}

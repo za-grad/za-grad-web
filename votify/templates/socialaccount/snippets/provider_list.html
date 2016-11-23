@@ -1,0 +1,26 @@
+{% load socialaccount %}
+
+{% for provider in socialaccount.providers %}
+{% comment %}
+    {% if provider.id == "openid" %}
+        {% for brand in provider.get_brands %}
+            <li>
+              <a title="{{brand.name}}"
+                 class="socialaccount_provider {{provider.id}} {{brand.id}}"
+                 href="{% provider_login_url provider.id openid=brand.openid_url %}"
+                 >{{brand.name}}</a>
+            </li>
+        {% endfor %}
+    {% endif %}
+{% endcomment %}
+      <a title="{{ provider.name }}" class="socialaccount_provider {{ provider.id }}" href="{% provider_login_url provider.id %}">
+        {% if provider.name == 'Google' %}
+            <img style="height: 24px;" src="{{ STATIC_URL }}bootstrap/img/icons/g.png" />
+        {% elif provider.name == 'Facebook' %}
+            <img style="height: 24px;" src="{{ STATIC_URL }}bootstrap/img/icons/fb.png" />
+        {% elif provider.name == 'Twitter' %}
+            <img style="height: 24px;" src="{{ STATIC_URL }}bootstrap/img/icons/tw.png" />
+        {% endif %}
+     </a>
+{% endfor %}
+

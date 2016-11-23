@@ -1,0 +1,42 @@
+{% load thumbnail %}
+
+<div class="abs-bg"></div>
+<div class="top">
+    {% thumbnail comment.user.get_profile.photo "40x40" crop="center" as im %}
+        <img class="img-polaroid profile-img" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    <div class="profile">
+        <a class="name" href="{{ comment.user.get_profile.details_url }}">{{ comment.user.get_profile.name|upper }}</a>
+        <span style="display: block; float: left; font-size: 12px;">{{ comment.updated }}</span>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="comment">
+    {{ comment.comment_html|safe }}
+</div>
+
+<div class="actions">
+    {% if comment.id not in flagged_comments_ids %}
+        <a class="btn-flag-comment" data-action-url="{% url idea_comment_flag comment.id %}" href="#">OZNAČI KAO SPAM</a>
+    {% else %}
+        <a class="btn-unflag-comment" data-action-url="{% url idea_comment_unflag comment.id %}" href="#">NIJE SPAM</a>
+    {% endif %}
+</div>
+{% comment %}
+<div class="subcomments-holder hide">
+    <div>
+        <a class="pull-right" href="#">ODGOVORI</a>
+        <a class="btn-show-subcomments pull-left" href="#">
+            <span class="subcomments-title ">PRIKAŽI KOMENTARE</span>
+            {% with subcomments_count=comment.comments.count %}
+                <span class="subcomments-count">({{ subcomments_count }})</span>
+            {% endwith %}
+        </a>
+        <div style="clear: both"></div>
+    </div>
+    <div class="subcomments" data-list-url="{% url idea_subcomment_list comment.id %}" data-visible="false">
+    </div>
+</div>
+{% endcomment %}
+<div style="clear: both"></div>

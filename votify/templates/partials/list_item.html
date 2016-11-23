@@ -1,0 +1,47 @@
+<div class="list-item {% block item_style %}{{ item_style }}{% endblock %}">
+    {% if url %}<a href="{{ url }}" class="list-item-link">{% endif %}
+        <div class="img-box">
+            {% block image %}
+                {% if image %}
+                    <img class="img-bw" src="{{ image }}" />
+                {% endif %}
+            {% endblock %}
+        </div>
+        <div class="triangle">
+        </div>
+        <div class="content">
+            <div class="row-fluid">
+                <div class="span11">
+                    <div class="user">
+                        {% block username %}
+                            {{ username }}
+                        {% endblock %}
+                    </div>
+                    <div class="title">
+                        {% block title %}
+                            {{ title }}
+                        {% endblock %}
+                    </div>
+                    {% include 'snippets/hr.html' %}
+                    <div class="text">
+                        {% block text %}
+                            {{ text }}
+                        {% endblock %}
+                    </div>
+                    {% include 'snippets/hr.html' %}
+                </div>
+            </div>
+            {% block bottom %}
+                <div class="row-fluid">
+                    <div class="span11">
+                    </div>
+                    <div class="span1">
+                        <div class="right-pointer">
+                            >>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    {% if url %}</a>{% endif %}
+</div>

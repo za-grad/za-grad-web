@@ -1,0 +1,8 @@
+{% extends 'pages/partials/details.html' %}
+
+{% block title %}
+    {{ block.super }}
+    <div style="clear: both;"></div>
+    <div class="pull-right" style="font-size: 12px;">{{ page.updated|date:"DATE_FORMAT" }}</div>
+    <div style="clear: both;"></div>
+{% endblock %}
