@@ -6,3 +6,5 @@
 /dev.db
 todo.txt
 votify/staticfiles/bootstrap/less/style.css
+Procfile.dev
+tmp

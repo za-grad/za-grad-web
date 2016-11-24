@@ -1,0 +1,2 @@
+web: python manage.py runserver
+pg: postgres -D tmp/postgres -p 5432
