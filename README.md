@@ -2,7 +2,7 @@
 
 ### Initial setup
 
-You need Python, virtualenv and Postgres.
+You need Python, virtualenv, node for static files and Postgres.
 
 Start the DB:
 
@@ -59,3 +59,10 @@ If you only want to start the development server:
 In this case the DB needs to be running separately with:
 
     postgres -D tmp/postgres -p 5432
+
+### Static files
+
+To recompile the less frontend run:
+
+    npm install # initially only
+    ./node_modules/less/bin/lessc votify/staticfiles/bootstrap/less/style.less votify/staticfiles/bootstrap/less/style.css

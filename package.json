@@ -1,0 +1,22 @@
+{
+  "name": "za-grad-web",
+  "version": "1.0.0",
+  "description": "### Initial setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/za-grad/za-grad-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/za-grad/za-grad-web/issues"
+  },
+  "homepage": "https://github.com/za-grad/za-grad-web#readme",
+  "devDependencies": {
+    "less": "^1.3.3"
+  }
+}

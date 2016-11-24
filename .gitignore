@@ -8,3 +8,4 @@ todo.txt
 votify/staticfiles/bootstrap/less/style.css
 Procfile.dev
 tmp
+node_modules
