@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     'pages',
     'members',
     'blog',
+    'donations',
 
     # allauth
     'allauth',
