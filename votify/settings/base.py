@@ -269,6 +269,11 @@ else:
     # Use default Django logging setup
     LOGGING = BASE_LOGGING
 
+import braintree
+braintree.Configuration.configure(braintree.Environment.Sandbox,
+                                  merchant_id="use_your_merchant_id",
+                                  public_key="use_your_public_key",
+                                  private_key="use_your_private_key")
 
 IDEA_IMAGES_ROOT = 'idea_images'
 IDEA_SMALLBOX_CHUNK_SIZE = 36
